@@ -1,15 +1,12 @@
 @import 'colors';
 @import '~boxicons/css/boxicons.min.css';
 
-body, html {
-  box-sizing: border-box;
+* {
   margin: 0;
+  box-sizing: border-box;
 }
 
 body {
+  background: $background-light;
   width: 100%;
-  background: $background-dark;
-  display: flex;
-  justify-content: center;
-  align-content: center;
 }

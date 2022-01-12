@@ -1,12 +1,12 @@
 <template>
-  <container />
+  <issues />
 </template>
 
 <script>
-import Container from "./components/common/Container";
+import Issues from "./views/Issues";
 export default {
   name: 'App',
-  components: {Container},
+  components: {Issues},
 }
 </script>
 
