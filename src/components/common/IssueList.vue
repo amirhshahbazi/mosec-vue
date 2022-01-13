@@ -1,6 +1,8 @@
 <template>
   <div class="issue-list">
-    <issue-item v-for="issue in issues" :key="issue.id" :issue="issue"></issue-item>
+    <transition-group name="list" mode="in-out">
+      <issue-item v-for="issue in issues" :key="issue.id" :issue="issue"></issue-item>
+    </transition-group>
   </div>
 </template>
 
