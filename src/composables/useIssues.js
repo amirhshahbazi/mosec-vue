@@ -13,6 +13,6 @@ export default function useIssues() {
 
     return {
         handleStateChange,
-        selectedState: selectedStates
+        selectedStates
     }
 }

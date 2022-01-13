@@ -18,20 +18,23 @@
       </template>
     </container>
   </div>
+  <scroll-anchor />
 </template>
 
 <script>
 import useIssues from "../composables/useIssues"
 import Container from "../components/common/Container"
 import SwitchButton from "../components/base/SwitchButton"
+import ScrollAnchor from "../components/common/ScrollAnchor";
 export default {
   name: "Issues",
-  components: {SwitchButton, Container},
+  components: {ScrollAnchor, SwitchButton, Container},
   setup() {
-    const { handleStateChange } = useIssues()
+    const { handleStateChange, selectedStates } = useIssues()
 
     return {
-      handleStateChange
+      handleStateChange,
+      selectedStates
     }
   }
 }
