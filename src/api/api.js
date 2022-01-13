@@ -1,11 +1,11 @@
 import axios from "axios"
 
 const params = {
-  baseURL: "https://api.github.com/repos/reduxjs/redux",
-  headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json"
-  }
+    baseURL: "https://api.github.com/repos/reduxjs/redux",
+    headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+    }
 }
 
 const instance = axios.create(params)

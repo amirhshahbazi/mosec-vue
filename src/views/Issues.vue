@@ -1,5 +1,6 @@
 <template>
   <loader v-if="loading"/>
+  <toast v-if="errorMessage" :content="errorMessage" type="error"/>
   <div class="issues">
     <container class="issues-container">
       <template #header>
@@ -29,12 +30,13 @@ import SwitchButton from "../components/base/SwitchButton"
 import ScrollAnchor from "../components/common/ScrollAnchor";
 import IssueList from "../components/common/IssueList";
 import Loader from "../components/base/Loader";
+import Toast from "../components/base/Toast";
 
 export default {
   name: "Issues",
-  components: {Loader, IssueList, ScrollAnchor, SwitchButton, Container},
+  components: {Toast, Loader, IssueList, ScrollAnchor, SwitchButton, Container},
   setup() {
-    const {handleStateChange, selectedStates, handleScrollAnchor, reset, issues, loading} = useIssues()
+    const {handleStateChange, selectedStates, handleScrollAnchor, reset, issues, loading, errorMessage } = useIssues()
 
     return {
       handleStateChange,
@@ -42,7 +44,8 @@ export default {
       reset,
       issues,
       selectedStates,
-      loading
+      loading,
+      errorMessage
     }
   }
 }

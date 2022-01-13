@@ -7,6 +7,7 @@ export default function useIssues() {
     let ended = ref(false)
     let loading = ref(false)
     let page = ref(1)
+    let errorMessage = ref('')
     let {fetchIssues} = issuesApi
 
     const handleStateChange = (state) => {
@@ -40,7 +41,10 @@ export default function useIssues() {
 
             } catch (error) {
                 // since it's a single endpoint application, there's no need for axios interceptors
-                console.error(error)
+                errorMessage.value = error.toString()
+                setTimeout(() => {
+                    errorMessage.value = ''
+                }, 5000)
             }
 
             loading.value = false
@@ -67,6 +71,7 @@ export default function useIssues() {
         reset,
         selectedStates,
         issues,
-        loading
+        loading,
+        errorMessage
     }
 }
