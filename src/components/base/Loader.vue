@@ -13,6 +13,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@include loader-animation;
+
 .loader {
   position: fixed;
   top: 0;
@@ -24,21 +26,11 @@ export default {
   align-items: center;
   z-index: 999;
   background: rgba(0, 0, 0, 0.5);
+
   .loader__icon {
     font-size: 4rem;
     transform: scale(1);
     animation: github-animation 1s linear infinite;
-  }
-  @keyframes github-animation {
-    0% {
-      opacity: 1.0;
-    }
-    50% {
-      opacity: 0.0;
-    }
-    100% {
-      opacity: 1.0;
-    }
   }
 }
 </style>
