@@ -18,7 +18,7 @@
       </template>
     </container>
   </div>
-  <scroll-anchor />
+  <scroll-anchor v-on:anchor-in-view="handleScrollAnchor" />
 </template>
 
 <script>
@@ -30,10 +30,11 @@ export default {
   name: "Issues",
   components: {ScrollAnchor, SwitchButton, Container},
   setup() {
-    const { handleStateChange, selectedStates } = useIssues()
+    const { handleStateChange, selectedStates, handleScrollAnchor } = useIssues()
 
     return {
       handleStateChange,
+      handleScrollAnchor,
       selectedStates
     }
   }

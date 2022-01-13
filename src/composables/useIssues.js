@@ -11,8 +11,13 @@ export default function useIssues() {
         }
     }
 
+    const handleScrollAnchor = () => {
+        // fetch data here
+    }
+
     return {
         handleStateChange,
+        handleScrollAnchor,
         selectedStates
     }
 }
