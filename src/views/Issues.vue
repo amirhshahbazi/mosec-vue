@@ -14,7 +14,7 @@
         </switch-button>
       </template>
       <template #body>
-        body
+        <issue-list :issues="issues"></issue-list>
       </template>
     </container>
   </div>
@@ -26,15 +26,18 @@ import useIssues from "../composables/useIssues"
 import Container from "../components/common/Container"
 import SwitchButton from "../components/base/SwitchButton"
 import ScrollAnchor from "../components/common/ScrollAnchor";
+import IssueList from "../components/common/IssueList";
 export default {
   name: "Issues",
-  components: {ScrollAnchor, SwitchButton, Container},
+  components: {IssueList, ScrollAnchor, SwitchButton, Container},
   setup() {
-    const { handleStateChange, selectedStates, handleScrollAnchor } = useIssues()
+    const { handleStateChange, selectedStates, handleScrollAnchor, reset, issues } = useIssues()
 
     return {
       handleStateChange,
       handleScrollAnchor,
+      reset,
+      issues,
       selectedStates
     }
   }
@@ -44,7 +47,6 @@ export default {
 <style scoped lang="scss">
 .issues-container {
   margin: 100px 60px;
-  height: 500px;
 
   .switch-button {
     &:first-child {

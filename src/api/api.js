@@ -14,7 +14,7 @@ const instance = axios.create(params)
 const api = (axios) => {
     return {
         get: (url, params, config) => {
-            return axios.get(url, params, config)
+            return axios.get(url, {params}, config)
         },
     }
 }
