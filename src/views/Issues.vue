@@ -63,6 +63,10 @@ export default {
         margin-right: 10px;
       }
     }
+
+    @media only screen and (max-width: 568px) {
+      margin: 20px;
+    }
   }
 
   &__anchor {
