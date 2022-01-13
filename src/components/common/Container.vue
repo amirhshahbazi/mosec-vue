@@ -20,7 +20,7 @@ export default {
   @include smooth-container-shadow;
   background: white;
   border-radius: 15px;
-  overflow: hidden;
+  overflow-x: hidden;
   &__header {
     width: 100%;
     padding: 20px;

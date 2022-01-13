@@ -1,9 +1,15 @@
 import {ref} from 'vue'
+import issuesApi from "../api/issuesApi"
 
 export default function useIssues() {
     let selectedStates = ref([])
+    let issues = ref([])
+    let ended = ref(false)
+    let page = ref(1)
+    let { fetchIssues } = issuesApi
 
     const handleStateChange = (state) => {
+        reset()
         if (selectedStates.value !== state && !selectedStates.value.includes(state)) {
             selectedStates.value.push(state)
         } else {
@@ -11,13 +17,47 @@ export default function useIssues() {
         }
     }
 
-    const handleScrollAnchor = () => {
-        // fetch data here
+    const handleScrollAnchor = async () => {
+        if (!ended.value) {
+            let state = determineState()
+
+            // start loading
+            let result = await fetchIssues({
+                page: page.value,
+                state,
+                sort: 'created'
+            })
+
+            if (result.data.length === 0) {
+                ended.value = true
+            } else {
+                page.value++
+                issues.value = issues.value.concat(result.data)
+            }
+        }
+        console.warn(issues.value.length, page.value, ended.value)
+    }
+
+    const determineState = () => {
+        if (selectedStates.value.length === 2 || selectedStates.value.length === 0) {
+            return 'all'
+        } else {
+            return selectedStates.value[0]
+        }
+    }
+
+    const reset = () => {
+        selectedStates.value = []
+        issues.value = []
+        ended.value = false
+        page.value = 1
     }
 
     return {
         handleStateChange,
         handleScrollAnchor,
-        selectedStates
+        selectedStates,
+        reset,
+        issues
     }
 }
