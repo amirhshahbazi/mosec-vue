@@ -3,26 +3,31 @@
 </template>
 
 <script>
+import {watch} from "vue"
 import useScrollAnchor from "../../composables/useScrollAnchor"
+
 export default {
   name: "ScrollAnchor",
+  emits: ['anchorInView'],
   props: {
     options: {
       type: Object,
       default: () => ({})
     }
   },
-  setup() {
-    const { observer } = useScrollAnchor()
-    return { observer }
+  setup(props, {emit}) {
+    const {observer, time} = useScrollAnchor()
+
+    watch(time, (newVal, oldVal) => {
+      emit('anchorInView', {newVal, oldVal})
+    })
+
+    return {observer, time}
   }
 }
 </script>
 
 <style scoped lang="scss">
 .scroll-anchor {
-  width: 50px;
-  height: 50px;
-  background: red;
 }
 </style>
