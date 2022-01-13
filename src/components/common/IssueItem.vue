@@ -2,7 +2,7 @@
   <div class="issue">
     <div class="issue-icon"
          :class="{'issue-icon--closed': issue.state === 'closed', 'issue-icon--open': issue.state === 'open'}">
-      <i class="bx bx-check-circle"/>
+      <i class="bx" :class="{'bx-check-circle': issue.state === 'closed', 'bx-circle': issue.state === 'open'}"/>
     </div>
     <div class="issue-item">
       <div class="issue-item__title">

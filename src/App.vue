@@ -6,7 +6,7 @@
 import Issues from "./views/Issues";
 export default {
   name: 'App',
-  components: {Issues},
+  components: { Issues},
 }
 </script>
 
