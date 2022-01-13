@@ -2,7 +2,6 @@ import axios from "axios"
 
 const params = {
   baseURL: "https://api.github.com/repos/reduxjs/redux",
-  timeout: 5000,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json"
