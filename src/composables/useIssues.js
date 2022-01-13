@@ -24,18 +24,25 @@ export default function useIssues() {
             let state = determineState()
             loading.value = true
 
-            let result = await fetchIssues({
-                page: page.value,
-                state,
-                sort: 'created'
-            })
+            try {
+                let result = await fetchIssues({
+                    page: page.value,
+                    state,
+                    sort: 'created'
+                })
 
-            if (result.data.length === 0) {
-                ended.value = true
-            } else {
-                page.value++
-                issues.value = issues.value.concat(result.data)
+                if (result.data.length === 0) {
+                    ended.value = true
+                } else {
+                    page.value++
+                    issues.value = issues.value.concat(result.data)
+                }
+
+            } catch (error) {
+                // since it's a single endpoint application, there's no need for axios interceptors
+                console.error(error)
             }
+
             loading.value = false
         }
     }
