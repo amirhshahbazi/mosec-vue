@@ -5,8 +5,9 @@ export default function useIssues() {
     let selectedStates = ref([])
     let issues = ref([])
     let ended = ref(false)
+    let loading = ref(false)
     let page = ref(1)
-    let { fetchIssues } = issuesApi
+    let {fetchIssues} = issuesApi
 
     const handleStateChange = (state) => {
         reset()
@@ -19,9 +20,10 @@ export default function useIssues() {
 
     const handleScrollAnchor = async () => {
         if (!ended.value) {
-            let state = determineState()
 
-            // start loading
+            let state = determineState()
+            loading.value = true
+
             let result = await fetchIssues({
                 page: page.value,
                 state,
@@ -34,8 +36,8 @@ export default function useIssues() {
                 page.value++
                 issues.value = issues.value.concat(result.data)
             }
+            loading.value = false
         }
-        console.warn(issues.value.length, page.value, ended.value)
     }
 
     const determineState = () => {
@@ -47,7 +49,6 @@ export default function useIssues() {
     }
 
     const reset = () => {
-        selectedStates.value = []
         issues.value = []
         ended.value = false
         page.value = 1
@@ -56,8 +57,9 @@ export default function useIssues() {
     return {
         handleStateChange,
         handleScrollAnchor,
-        selectedStates,
         reset,
-        issues
+        selectedStates,
+        issues,
+        loading
     }
 }

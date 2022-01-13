@@ -1,4 +1,5 @@
 <template>
+  <loader v-if="loading"/>
   <div class="issues">
     <container class="issues-container">
       <template #header>
@@ -17,8 +18,8 @@
         <issue-list :issues="issues"></issue-list>
       </template>
     </container>
+    <scroll-anchor class="issues__anchor" v-on:anchor-in-view="handleScrollAnchor"/>
   </div>
-  <scroll-anchor v-on:anchor-in-view="handleScrollAnchor" />
 </template>
 
 <script>
@@ -27,31 +28,43 @@ import Container from "../components/common/Container"
 import SwitchButton from "../components/base/SwitchButton"
 import ScrollAnchor from "../components/common/ScrollAnchor";
 import IssueList from "../components/common/IssueList";
+import Loader from "../components/base/Loader";
+
 export default {
   name: "Issues",
-  components: {IssueList, ScrollAnchor, SwitchButton, Container},
+  components: {Loader, IssueList, ScrollAnchor, SwitchButton, Container},
   setup() {
-    const { handleStateChange, selectedStates, handleScrollAnchor, reset, issues } = useIssues()
+    const {handleStateChange, selectedStates, handleScrollAnchor, reset, issues, loading} = useIssues()
 
     return {
       handleStateChange,
       handleScrollAnchor,
       reset,
       issues,
-      selectedStates
+      selectedStates,
+      loading
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-.issues-container {
-  margin: 100px 60px;
+.issues {
+  position: relative;
 
-  .switch-button {
-    &:first-child {
-      margin-right: 10px;
+  .issues-container {
+    margin: 100px 60px;
+
+    .switch-button {
+      &:first-child {
+        margin-right: 10px;
+      }
     }
+  }
+
+  &__anchor {
+    position: absolute;
+    bottom: 0;
   }
 }
 </style>
