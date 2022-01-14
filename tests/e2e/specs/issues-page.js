@@ -34,5 +34,13 @@ describe('issues page', () => {
       cy.get('.issue').should('have.length', 60)
     })
 
+    it('mobile devices - scrolling down to the end of the page loads 30 more issues', () => {
+      cy.viewport('iphone-6')
+      cy.visit('/')
+      cy.get('.issue').should('have.length', 30)
+      cy.get('.scroll-anchor').scrollIntoView()
+      cy.get('.issue').should('have.length', 60)
+    })
+
   })
 })
