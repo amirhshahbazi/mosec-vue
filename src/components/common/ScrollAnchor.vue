@@ -28,6 +28,4 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.scroll-anchor {
-}
 </style>
