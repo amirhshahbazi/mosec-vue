@@ -71,7 +71,7 @@ export default {
 
   &__anchor {
     position: absolute;
-    bottom: 0;
+    bottom: 50px;
   }
 }
 </style>
