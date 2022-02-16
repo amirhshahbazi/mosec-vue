@@ -1,6 +1,6 @@
 <h1 align="center">
   <div> <img src="https://mosec.jsdev.best/mosec_small.png" /> </div>
-  Mofid Securities technical assignment with Vue.js.
+  Vue.js technical assignment.
 </h1>
 
 <p align="center">
